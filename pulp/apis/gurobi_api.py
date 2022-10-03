@@ -165,7 +165,8 @@ class GUROBI(LpSolver):
         def available(self):
             """True if the solver is available"""
             try:
-                gurobipy.setParam("_test", 0)
+                with gurobipy.Env():
+                    pass
             except gurobipy.GurobiError as e:
                 warnings.warn("GUROBI error: {}.".format(e))
                 return False
